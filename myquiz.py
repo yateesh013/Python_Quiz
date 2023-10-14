@@ -2,11 +2,13 @@ import tkinter as tk
 from tkinter import messagebox
 import os
 file_path = "quiz_questions.txt"
+result_path="results.txt"
+result=[]
 def w1():
     main=tk.Tk()
     main.title("QUIZ APP.")
 
-    main.geometry("500x500")
+    main.geometry("600x600")
 
     l1=tk.LabelFrame(main,text="QUIZ",bg="green")
     l1.place(x=100,y=50)
@@ -158,7 +160,10 @@ def w1():
         except:
             clear()
             def last():
-                main.after(1000,main.destroy())
+                if os.path.exists(result_path):
+                    with open(result_path, 'w') as f:
+                        f.write(f"{name_2.upper()}||{sum(sc)}")
+                main.after(3000,main.destroy())
             l15=tk.Label(main,text=f"{name.upper()} YOUR SCORE IS :{sum(sc)}").place(x=100,y=200)
             exit_button=tk.Button(main,text=f"EXIT",command=last,pady="3",border="5").place(x=400,y=400)
         def check_key():
