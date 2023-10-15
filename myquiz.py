@@ -4,6 +4,7 @@ import os
 file_path = "quiz_questions.txt"
 result_path="results.txt"
 result=[]
+valid=[True]
 def w1():
     main=tk.Tk()
     main.title("QUIZ APP.")
@@ -107,7 +108,16 @@ def w1():
         elif name.get() in ["yateesh","YATEESH"]:
             question()    
         else:
-            load_question_from_file()        
+            valid[0]=True
+            if os.path.exists(result_path):
+                with open(result_path,"r") as r:
+                    for line in r:
+                        Names,Marks=line.strip().split("||")
+                        if name.get().upper()==Names:
+                            valid[0]=False
+                            messagebox.showerror("ATTEMPT ERROR",f"{Names} YOU HAVE ALREADY DONE THIS QUIZ WITH A SCORE OF {Marks}")
+            if valid[0]==True: 
+                load_question_from_file()        
     def clear():
         for item in main.winfo_children():
             item.destroy()        
@@ -161,8 +171,8 @@ def w1():
             clear()
             def last():
                 if os.path.exists(result_path):
-                    with open(result_path, 'w') as f:
-                        f.write(f"{name_2.upper()}||{sum(sc)}")
+                    with open(result_path, 'a') as f:
+                        f.write(f"{name_2.upper()}||{sum(sc)}\n")
                 main.after(3000,main.destroy())
             l15=tk.Label(main,text=f"{name.upper()} YOUR SCORE IS :{sum(sc)}").place(x=100,y=200)
             exit_button=tk.Button(main,text=f"EXIT",command=last,pady="3",border="5").place(x=400,y=400)
