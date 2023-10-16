@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 import os
+import random as rd
 file_path = "quiz_questions.txt"
 result_path="results.txt"
 result=[]
@@ -22,6 +23,22 @@ def w1():
 
     name=tk.Entry(justify="left")   
     name.place(x=150,y=150)
+    def encrypt(entity,num)->str:
+        def add(num):
+              x1=""
+              for i in range(num):
+                    x1+=chr(rd.randint(65,123))
+              return x1      
+        x=""
+        for i in entity:
+            x+=f"{i}{add(num)}"
+        return x 
+    def decrypt(entity,num)->str:
+        x=""
+        for i in range(len(entity)):
+            if(i%(num+1)==0):
+                x+=entity[i]
+        return x        
     def question():
         main.destroy()
         count=[1,0]
@@ -34,9 +51,9 @@ def w1():
                 if q3.get() and q7.get() and q8.get()!="":
                     count[0]=count[0]+1
                     q2.config(text=f"ENTER YOUR {count[0]} QUESTION .")
-                    quest.append(f"{count[0]-1}.{q3.get()}")
-                    opt.append(f"1.{q4.get()},2.{q5.get()},3.{q6.get()},4.{q7.get()}")
-                    key.append(q8.get())
+                    quest.append(f"{encrypt(q3.get(),3)}")
+                    opt.append(f"{encrypt(q4.get(),5)},{encrypt(q5.get(),5)},{encrypt(q6.get(),5)},{encrypt(q7.get(),5)}")
+                    key.append(3*int(q8.get())+5)
                     print(quest,opt,key)
                     q3.delete(0,len(q3.get()))
                     q4.delete(0,len(q4.get()))
@@ -97,10 +114,13 @@ def w1():
         if os.path.exists(file_path):
             with open(file_path, 'r') as f:
                 for line in f:
-                    l1,l2 ,l3 = line.strip().split('||')
-                    ques.append(l1)
-                    ans.append(l2.split(",")) 
-                    key.append(int(l3))
+                    l1,l2,l3 = line.strip().split('||')
+                    ques.append(decrypt(l1,3))
+                    my_list=[]
+                    for i in l2.split(","):
+                        my_list.append(decrypt(i,5))
+                    ans.append(my_list) 
+                    key.append((int(l3)-5)/3)
         w2(ques,ans,key)                         
     def verify_name():
         if name.get()=="":
@@ -196,6 +216,5 @@ def w1():
         if(num<len(ques)):
             b3=tk.Button(main,text="VERIFY",command=check_key,pady="3",border="5").place(x=300,y=400)
             b4=tk.Button(main,text="NEXT",command=next_call,pady="3",border="5").place(x=400,y=400)    
-    
     main.mainloop()
 w1()    

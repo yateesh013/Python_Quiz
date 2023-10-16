@@ -1,5 +1,1 @@
-1. how a current source is connected to circuit.||1. in series,2. in parallel,3. either in series or parallel,4. all||1
-2. what is a passive element in below:||1. transformer,2. transistor,3. diode,4. resistor||4
-3. what is the advantage of ofc||1. security,2. large bandwidth,3. both a & b,4. no amplifier or repeater needed.||3
-4. in parallel connection which is common parameter||1. voltage,2. current,3. resistance,4. none ||1
-5. which amplifies signal without change in frequency or phase of signal||1. amplifier,2. rc filters,3. transformer,4. capacitor||3
+1eV_.RrkhPXWo^ZPwttD GOX pvcyoxyoyrcumzH kzQcxASoa_PnC{AnTg[e{PxcdqGtoHG EGO AdCarfb tUScdkPuiFTrwEdrjSOeIHAnnZMtyNI ]Ths]\soKTFuPh`rQWYcEVveDzR AdAtFpvouzP [hAcFftiVitrKqHcgPvuOMHifAwtNSX||1rXweB.VCAijskHlB[epqPsPrjxp{_iuuM{Feyf{tFsYtFAA,2BPXoJ.SXL]bpUH`OfaeDzXqrs\pFTaEPmZ{lZ]NZ[lPY^p]ekCdb]lCBMOY,3Oyyfd.Ul]k`nldnPtoBvJOlnn_ygeeqvIqn,4FifUr.lxAI[asXTXbny]v]KyS_kws||8
